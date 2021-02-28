@@ -2,10 +2,16 @@ package io.home.junit5app.logic;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EmptySource;
+import org.junit.jupiter.params.provider.NullSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import java.time.Duration;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("Test Calculator methods")
 class CalculatorTest {
@@ -52,5 +58,21 @@ class CalculatorTest {
             RuntimeException exception = assertThrows(RuntimeException.class, () -> calculator.divide(5, 0));
             assertEquals("Zero is not allowed in denominator", exception.getMessage());
         }
+
+        @RepeatedTest(5)
+        @DisplayName("Repeat test for timings")
+        void multiply() {
+            int output = assertTimeout(Duration.ofMillis(1001), () -> calculator.multiplyWithDelay(5, 5));
+            assertEquals(25, output);
+        }
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"0", "1", "2", ""})
+    @NullSource
+    @EmptySource
+    //@NullAndEmptySource
+    void divisionsTest(String str) {
+        assertNotEquals("STOP", str);
     }
 }

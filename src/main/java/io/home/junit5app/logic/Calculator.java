@@ -24,4 +24,13 @@ public class Calculator {
         return num1 * num2;
     }
 
+    public int multiplyWithDelay(int num1, int num2) {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return num1 * num2;
+    }
+
 }
