@@ -8,7 +8,7 @@ public class TimeoutDemo {
 
     public int incrementNumber(int num) {
         try {
-            Thread.sleep(1001);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

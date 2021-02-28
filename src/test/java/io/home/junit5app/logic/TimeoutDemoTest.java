@@ -35,7 +35,7 @@ class TimeoutDemoTest {
 
     @Test
     @DisplayName("Test whole method execution timeout")
-    @Timeout(value = 1005, unit = TimeUnit.MILLISECONDS)
+    @Timeout(value = 2000, unit = TimeUnit.MILLISECONDS)
     void incrementNumber() {
         assertEquals(11, timeoutDemo.incrementNumber(10));
     }
