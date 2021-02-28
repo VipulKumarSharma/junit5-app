@@ -6,10 +6,12 @@ import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EmptySource;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.time.Duration;
+import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -72,7 +74,17 @@ class CalculatorTest {
     @NullSource
     @EmptySource
     //@NullAndEmptySource
-    void divisionsTest(String str) {
+    void multiValuedAssertionTest(String str) {
         assertNotEquals("STOP", str);
+    }
+
+    static IntStream intRange() {
+        return IntStream.range(0, 10);
+    }
+
+    @ParameterizedTest
+    @MethodSource("intRange")
+    void methodSourceAssertionTest(Integer i) {
+        assertNotNull(i);
     }
 }
