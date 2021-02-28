@@ -7,6 +7,10 @@ import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 class JunitLifecycleTest {
 
+    public JunitLifecycleTest() {
+        System.out.println("JunitLifecycleTest instance created.");
+    }
+
     private final TimeoutDemo timeoutDemo = new TimeoutDemo();
 
     @BeforeAll

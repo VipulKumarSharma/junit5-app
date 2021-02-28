@@ -20,6 +20,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @TestMethodOrder(MethodOrderer.MethodName.class)
 class TimeoutDemoTest {
 
+    public TimeoutDemoTest() {
+        System.out.println("TimeoutDemoTest instance created.");
+    }
+
     private final TimeoutDemo timeoutDemo = new TimeoutDemo();
 
     @Test

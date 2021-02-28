@@ -28,6 +28,10 @@ import static org.junit.jupiter.api.Assertions.assertTimeout;
 @DisplayName("Test Calculator methods")
 class CalculatorTest {
 
+    public CalculatorTest() {
+        System.out.println("CalculatorTest instance created.");
+    }
+
     private final Calculator calculator = new Calculator();
 
     @Test
