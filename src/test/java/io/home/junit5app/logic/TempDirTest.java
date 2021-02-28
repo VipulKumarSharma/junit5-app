@@ -1,6 +1,6 @@
 package io.home.junit5app.logic;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.io.TempDir;
 
 import java.io.IOException;
@@ -12,6 +12,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class TempDirTest {
 
     public TempDirTest() {
@@ -19,7 +20,7 @@ public class TempDirTest {
     }
 
     /** Temp Directory is NOT shared with other test cases **/
-    @Test
+    @FastTest
     void tempFileTest(@TempDir Path fileDir) throws IOException {
         /* File will be created in temp directory (i.e. /tmp/junit3556576321462541209/abc.txt) */
         Path filePath = fileDir.resolve("abc.txt");
