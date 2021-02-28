@@ -1,14 +1,23 @@
 package io.home.junit5app.logic;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.Timeout;
 
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTimeout;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@TestMethodOrder(MethodOrderer.MethodName.class)
 class TimeoutDemoTest {
 
     private final TimeoutDemo timeoutDemo = new TimeoutDemo();
@@ -28,7 +37,7 @@ class TimeoutDemoTest {
     @Test
     @DisplayName("Test invoked method execution timeout")
     void incrementNumberTimeoutTest() {
-        int output = assertTimeout(Duration.ofMillis(1001), () -> timeoutDemo.incrementNumber(10));
+        int output = assertTimeout(Duration.ofMillis(1009), () -> timeoutDemo.incrementNumber(10));
         assertEquals(11, output);
     }
 
