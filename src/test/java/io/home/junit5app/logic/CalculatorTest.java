@@ -5,10 +5,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.EmptySource;
-import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.NullSource;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.params.provider.*;
 
 import java.time.Duration;
 import java.util.stream.IntStream;
@@ -74,6 +71,7 @@ class CalculatorTest {
     @NullSource
     @EmptySource
     //@NullAndEmptySource
+    @DisplayName("Test same test case with different values")
     void multiValuedAssertionTest(String str) {
         assertNotEquals("STOP", str);
     }
@@ -84,7 +82,26 @@ class CalculatorTest {
 
     @ParameterizedTest
     @MethodSource("intRange")
+    @DisplayName("Test with steam of integers coming from method output")
     void methodSourceAssertionTest(Integer i) {
         assertNotNull(i);
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+        "1, 2, 3",
+        "4, 5, 9",
+        "10, 45, 55"
+    })
+    @DisplayName("Test with predefined input & output data")
+    void predefinedCaseValuesTest(int num1, int num2, int expectedOutput) {
+        assertEquals(expectedOutput, calculator.add(num1, num2));
+    }
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "./test-cases.csv", numLinesToSkip = 1)
+    @DisplayName("Test with predefined input & output data from CSV file")
+    void predefinedCaseValuesFromCsvFileTest(int num1, int num2, int expectedOutput) {
+        assertEquals(expectedOutput, calculator.add(num1, num2));
     }
 }
