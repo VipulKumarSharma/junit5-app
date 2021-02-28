@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 class JunitLifecycleTest {
 
-    private final Demo demo = new Demo();
+    private final TimeoutDemo timeoutDemo = new TimeoutDemo();
 
     @BeforeAll
     static void initAll() {
@@ -38,7 +38,7 @@ class JunitLifecycleTest {
 
     @Test
     void abortedTest() {
-        assumeTrue(demo.returnMessage().contains("123"));
+        assumeTrue(timeoutDemo.returnMessage().contains("123"));
         fail("test should have been aborted");
     }
 

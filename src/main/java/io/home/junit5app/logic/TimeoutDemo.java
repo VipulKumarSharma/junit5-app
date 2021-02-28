@@ -1,6 +1,6 @@
 package io.home.junit5app.logic;
 
-public class Demo {
+public class TimeoutDemo {
 
     public String returnMessage() {
         return "STAY SAFE!";

@@ -12,24 +12,24 @@ import static org.junit.jupiter.api.Assertions.assertTimeout;
 
 class DemoTest {
 
-    private final Demo demo = new Demo();
+    private final TimeoutDemo timeoutDemo = new TimeoutDemo();
 
     @Test
     void returnMessage() {
-        assertEquals("STAY SAFE!", demo.returnMessage());
+        assertEquals("STAY SAFE!", timeoutDemo.returnMessage());
     }
 
     @Test
     @DisplayName("Test whole method execution timeout")
     @Timeout(value = 1005, unit = TimeUnit.MILLISECONDS)
     void incrementNumber() {
-        assertEquals(11, demo.incrementNumber(10));
+        assertEquals(11, timeoutDemo.incrementNumber(10));
     }
 
     @Test
     @DisplayName("Test invoked method execution timeout")
     void incrementNumberTimeoutTest() {
-        int output = assertTimeout(Duration.ofMillis(1001), () -> demo.incrementNumber(10));
+        int output = assertTimeout(Duration.ofMillis(1001), () -> timeoutDemo.incrementNumber(10));
         assertEquals(11, output);
     }
 
