@@ -59,6 +59,17 @@
 					</excludes>
 				</configuration>
 			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<!-- include tags -->
+					<!--<groups>integration, feature-168</groups>-->
+					<!-- exclude tags -->
+					<excludedGroups>slow</excludedGroups>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 

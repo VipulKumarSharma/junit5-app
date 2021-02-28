@@ -5,6 +5,7 @@ import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestMethodOrder;
@@ -84,6 +85,7 @@ class CalculatorTest {
         }
 
         @RepeatedTest(5)
+        @Tag("slow")
         @DisplayName("Repeat test for timings")
         void repeatMultiplyTest() {
             int output = assertTimeout(Duration.ofMillis(1001), () -> calculator.multiplyWithDelay(5, 5));

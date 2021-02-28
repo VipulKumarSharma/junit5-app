@@ -2,6 +2,7 @@ package io.home.junit5app.logic;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestMethodOrder;
@@ -34,6 +35,7 @@ class TimeoutDemoTest {
     }
 
     @Test
+    @Tag("slow")
     @DisplayName("Test whole method execution timeout")
     @Timeout(value = 2000, unit = TimeUnit.MILLISECONDS)
     void incrementNumber() {
@@ -41,6 +43,7 @@ class TimeoutDemoTest {
     }
 
     @Test
+    @Tag("slow")
     @DisplayName("Test invoked method execution timeout")
     void incrementNumberTimeoutTest() {
         int output = assertTimeout(Duration.ofMillis(1009), () -> timeoutDemo.incrementNumber(10));
